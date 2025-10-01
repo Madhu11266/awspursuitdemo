@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto21   # Java 21
+    commands:
+      - echo "Installing Maven..."
+      - mvn --version
+  pre_build:
+    commands:
+      - echo "Starting build for pursuit.jar..."
+  build:
+    commands:
+      - echo "Building the JAR..."
+      - mvn clean package -DskipTests
+  post_build:
+    commands:
+      - echo "Build completed. Checking target folder..."
+      - ls target
+
+artifacts:
+  files:
+    - target/pursuit.jar
+  discard-paths: yes
