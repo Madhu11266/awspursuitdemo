@@ -4,11 +4,17 @@ phases:
   install:
     runtime-versions:
       java: 21
+  pre_build:
+    commands:
+      - echo "Setting JAVA_HOME for Maven Wrapper"
+      - export JAVA_HOME=/usr/lib/jvm/java-21-amazon-corretto
+      - export PATH=$JAVA_HOME/bin:$PATH
+      - java -version
+      - chmod +x mvnw
   build:
     commands:
       - echo "Starting build on `date`"
       - echo "Cleaning and packaging Spring Boot project..."
-      - chmod +x mvnw
       - ./mvnw clean package -DskipTests
       - mkdir -p build_output
       - cp target/*.jar build_output/pursuit.jar
