@@ -10,8 +10,9 @@ DB2_USERNAME=$(aws ssm get-parameter --name "/springboot/DB2_USERNAME" --with-de
 DB2_PASSWORD=$(aws ssm get-parameter --name "/springboot/DB2_PASSWORD" --with-decryption --query "Parameter.Value" --output text)
 
 # Ensure log directory exists
-mkdir -p /home/ec2-user/app/logs
-chmod 755 /home/ec2-user/app/logs
+sudo mkdir -p /home/ec2-user/app/logs
+sudo chmod 755 /home/ec2-user/app/logs
+
 
 # Run pursuit.jar with secrets and redirect logs
 nohup java -jar pursuit.jar \
