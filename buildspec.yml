@@ -8,15 +8,10 @@ phases:
     commands:
       - echo "Starting build on `date`"
       - echo "Cleaning and packaging Spring Boot project..."
-      # 👉 If using Maven
+      - chmod +x mvnw
       - ./mvnw clean package -DskipTests
-      # 👉 If using Gradle (uncomment instead of Maven)
-      # - ./gradlew clean build -x test
-
       - mkdir -p build_output
-      - cp target/*.jar build_output/pursuit.jar   # for Maven
-      # - cp build/libs/*.jar build_output/pursuit.jar   # for Gradle
-
+      - cp target/*.jar build_output/pursuit.jar
 artifacts:
   files:
     - pursuit.jar
