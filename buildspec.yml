@@ -19,5 +19,5 @@ phases:
       - cp -r scripts build_output/
 artifacts:
   files:
-    - pursuit.jar
+    - '**/*'
   base-directory: build_output
