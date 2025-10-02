@@ -15,10 +15,13 @@ phases:
       - ./mvnw clean package -DskipTests
       - mkdir -p build_output
       - cp target/*.jar build_output/pursuit.jar
-      - cp appspec.yml build_output/
-      - cp -r scripts build_output/
+      - cp appspec.yml build_output/appspec.yml
+      - cp -r scripts build_output/scripts
       - chmod +x build_output/scripts/*.sh
+
 artifacts:
   files:
-    - '**/*'
+    - pursuit.jar
+    - appspec.yml
+    - scripts/**/*
   base-directory: build_output
