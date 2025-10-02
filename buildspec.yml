@@ -17,6 +17,7 @@ phases:
       - cp target/*.jar build_output/pursuit.jar
       - cp appspec.yml build_output/
       - cp -r scripts build_output/
+      - chmod +x build_output/scripts/*.sh
 artifacts:
   files:
     - '**/*'
