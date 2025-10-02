@@ -3,23 +3,21 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto21   # Java 21
-    commands:
-      - echo "Installing Maven..."
-      - mvn --version
-  pre_build:
-    commands:
-      - echo "Starting build for pursuit.jar..."
+      java: 21
   build:
     commands:
-      - echo "Building the JAR..."
-      - mvn clean package -DskipTests
-  post_build:
-    commands:
-      - echo "Build completed. Checking target folder..."
-      - ls target
+      - echo "Starting build on `date`"
+      - echo "Cleaning and packaging Spring Boot project..."
+      # 👉 If using Maven
+      - ./mvnw clean package -DskipTests
+      # 👉 If using Gradle (uncomment instead of Maven)
+      # - ./gradlew clean build -x test
+
+      - mkdir -p build_output
+      - cp target/*.jar build_output/pursuit.jar   # for Maven
+      # - cp build/libs/*.jar build_output/pursuit.jar   # for Gradle
 
 artifacts:
   files:
-    - target/pursuit.jar
-  discard-paths: yes
+    - pursuit.jar
+  base-directory: build_output
