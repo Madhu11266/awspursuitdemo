@@ -15,8 +15,9 @@ sudo chmod 755 /home/ec2-user/app/logs
 
 
 # Run pursuit.jar with secrets and redirect logs
-nohup java -jar pursuit.jar \
-  --spring.datasource.url="$DB2_URL" \
-  --spring.datasource.username="$DB2_USERNAME" \
-  --spring.datasource.password="$DB2_PASSWORD" \
-  > /home/ec2-user/app/logs/app.log 2>&1 &
+sudo sh -c "nohup java -jar /home/ec2-user/app/pursuit.jar \
+  --spring.datasource.url='$DB2_URL' \
+  --spring.datasource.username='$DB2_USERNAME' \
+  --spring.datasource.password='$DB2_PASSWORD' \
+  >> /home/ec2-user/app/logs/app.log 2>&1 &"
+
