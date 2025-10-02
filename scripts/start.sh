@@ -2,7 +2,7 @@
 cd /home/ec2-user/app
 
 # Stop old process if running
-pkill -f 'java -jar' || true
+sudo pkill -f 'java -jar' || true
 
 # Fetch DB2 secrets from SSM
 DB2_URL=$(aws ssm get-parameter --name "/springboot/DB2_URL" --with-decryption --query "Parameter.Value" --output text)
