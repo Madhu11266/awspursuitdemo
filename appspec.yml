@@ -1,10 +1,14 @@
 version: 0.0
 os: linux
+
 files:
   - source: pursuit.jar
     destination: /home/ec2-user/app
+  - source: scripts/
+    destination: /home/ec2-user/app/scripts
+
 hooks:
-  AfterInstall:
+  ApplicationStart:
     - location: scripts/start.sh
       timeout: 60
       runas: ec2-user
