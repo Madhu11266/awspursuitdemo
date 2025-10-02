@@ -4,13 +4,15 @@ phases:
   install:
     runtime-versions:
       java: 21
+  pre_build:
     commands:
-      - echo "Installing Maven..."
-      - curl -sL https://downloads.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz | tar -xz -C /opt
-      - export PATH=/opt/apache-maven-3.9.9/bin:$PATH
+      - chmod +x mvnw
+      - export JAVA_HOME=/usr/lib/jvm/java-21-amazon-corretto.x86_64
+      - export PATH=$JAVA_HOME/bin:$PATH
+      - java -version
   build:
     commands:
-      - mvn clean package -DskipTests
+      - ./mvnw clean package -DskipTests
       - mkdir -p build_output
       - cp target/*.jar build_output/pursuit.jar
 artifacts:
